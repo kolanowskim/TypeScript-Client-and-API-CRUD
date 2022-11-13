@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addStarConstellation = exports.getAllConstellationsForStar = exports.addConstellation = exports.getConstellations = exports.addStar = exports.getStar = exports.getStars = void 0;
+exports.addStarConstellation = exports.getAllConstellationsForStar = exports.addConstellation = exports.getConstellations = exports.deleteStar = exports.addStar = exports.getStar = exports.getStars = void 0;
 var mysql_connector_1 = require("../utils/mysql.connector");
 var mysql_queries_1 = require("../utils/mysql.queries");
 //Stars
@@ -68,6 +68,18 @@ var addStar = function (star) { return __awaiter(void 0, void 0, void 0, functio
     });
 }); };
 exports.addStar = addStar;
+var deleteStar = function (id) { return __awaiter(void 0, void 0, void 0, function () {
+    var result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, mysql_connector_1.execute)(mysql_queries_1.SqlQueries.DeleteStar, [id, id])];
+            case 1:
+                result = _a.sent();
+                return [2 /*return*/, result.affectedRows > 0];
+        }
+    });
+}); };
+exports.deleteStar = deleteStar;
 //Constellations
 var getConstellations = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {

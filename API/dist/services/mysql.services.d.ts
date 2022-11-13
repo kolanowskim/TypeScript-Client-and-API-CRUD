@@ -2,6 +2,7 @@ import { AllStars, Star, AllConstellations, Constellation, StarConstellation } f
 export declare const getStars: () => Promise<AllStars[]>;
 export declare const getStar: (id: string) => Promise<Star>;
 export declare const addStar: (star: Star) => Promise<boolean>;
+export declare const deleteStar: (id: string) => Promise<boolean>;
 export declare const getConstellations: () => Promise<AllConstellations[]>;
 export declare const addConstellation: (constellation: Constellation) => Promise<boolean>;
 export declare const getAllConstellationsForStar: (id: string) => Promise<[]>;

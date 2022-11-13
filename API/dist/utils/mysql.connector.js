@@ -16,12 +16,13 @@ var init = function () {
             user: dataSource.DB_USER,
             password: dataSource.DB_PASSWORD,
             database: dataSource.DB_DATABASE,
+            multipleStatements: true,
         });
-        console.debug('MySql Adapter Pool generated successfully');
+        console.debug("MySql Adapter Pool generated successfully");
     }
     catch (error) {
-        console.error('[mysql.connector][init][Error]: ', error);
-        throw new Error('failed to initialized pool');
+        console.error("[mysql.connector][init][Error]: ", error);
+        throw new Error("failed to initialized pool");
     }
 };
 exports.init = init;
@@ -35,7 +36,7 @@ exports.init = init;
 var execute = function (query, params) {
     try {
         if (!pool)
-            throw new Error('Pool was not created. Ensure pool is created when running the app.');
+            throw new Error("Pool was not created. Ensure pool is created when running the app.");
         return new Promise(function (resolve, reject) {
             pool.query(query, params, function (error, results) {
                 if (error)
@@ -46,8 +47,8 @@ var execute = function (query, params) {
         });
     }
     catch (error) {
-        console.error('[mysql.connector][execute][Error]: ', error);
-        throw new Error('failed to execute MySQL query');
+        console.error("[mysql.connector][execute][Error]: ", error);
+        throw new Error("failed to execute MySQL query");
     }
 };
 exports.execute = execute;

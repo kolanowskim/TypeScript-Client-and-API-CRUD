@@ -59,9 +59,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addStarConstellation = exports.GetAllConstellationsForStar = exports.addConstellation = exports.getConstellations = exports.getStar = exports.addStar = exports.getStars = void 0;
+exports.addStarConstellation = exports.GetAllConstellationsForStar = exports.addConstellation = exports.getConstellations = exports.deleteStar = exports.getStar = exports.addStar = exports.getStars = void 0;
 var MySqlService = __importStar(require("../services/mysql.services"));
-//!!!!!DOPOPRAWY
 //Stars
 var getStars = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var stars, error_1;
@@ -78,9 +77,9 @@ var getStars = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
-                console.error("[teams.controller][getTeams][Error] ", typeof error_1 === "object" ? JSON.stringify(error_1) : error_1);
+                console.error("[apiController][getStars][Error] ", typeof error_1 === "object" ? JSON.stringify(error_1) : error_1);
                 res.status(500).json({
-                    message: "There was an error when fetching teams",
+                    message: "There was an error when fetching Stars",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -103,9 +102,9 @@ var addStar = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();
-                console.error("[teams.controller][addTeam][Error] ", typeof error_2 === "object" ? JSON.stringify(error_2) : error_2);
+                console.error("[apiController][addStar][Error] ", typeof error_2 === "object" ? JSON.stringify(error_2) : error_2);
                 res.status(500).json({
-                    message: "There was an error when adding new team",
+                    message: "There was an error when adding new Star",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -128,9 +127,9 @@ var getStar = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 return [3 /*break*/, 3];
             case 2:
                 error_3 = _a.sent();
-                console.error("[teams.controller][getTeams][Error] ", typeof error_3 === "object" ? JSON.stringify(error_3) : error_3);
+                console.error("[apiController][getStar][Error] ", typeof error_3 === "object" ? JSON.stringify(error_3) : error_3);
                 res.status(500).json({
-                    message: "There was an error when fetching teams",
+                    message: "There was an error when fetching Star",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -138,9 +137,34 @@ var getStar = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
     });
 }); };
 exports.getStar = getStar;
+var deleteStar = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var result, error_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, MySqlService.deleteStar(req.params.id)];
+            case 1:
+                result = _a.sent();
+                res.status(200).json({
+                    result: result,
+                });
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                console.error("[apiController][deleteStar][Error] ", typeof error_4 === "object" ? JSON.stringify(error_4) : error_4);
+                res.status(500).json({
+                    message: "There was an error when deleting star",
+                });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteStar = deleteStar;
 //Constellations
 var getConstellations = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var Constellations, error_4;
+    var Constellations, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -153,10 +177,10 @@ var getConstellations = function (req, res) { return __awaiter(void 0, void 0, v
                 });
                 return [3 /*break*/, 3];
             case 2:
-                error_4 = _a.sent();
-                console.error("[teams.controller][getTeams][Error] ", typeof error_4 === "object" ? JSON.stringify(error_4) : error_4);
+                error_5 = _a.sent();
+                console.error("[apiController][getConstellations][Error] ", typeof error_5 === "object" ? JSON.stringify(error_5) : error_5);
                 res.status(500).json({
-                    message: "There was an error when fetching teams",
+                    message: "There was an error when fetching Constellations",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -165,7 +189,7 @@ var getConstellations = function (req, res) { return __awaiter(void 0, void 0, v
 }); };
 exports.getConstellations = getConstellations;
 var addConstellation = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var result, error_5;
+    var result, error_6;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -178,10 +202,10 @@ var addConstellation = function (req, res) { return __awaiter(void 0, void 0, vo
                 });
                 return [3 /*break*/, 3];
             case 2:
-                error_5 = _a.sent();
-                console.error("[teams.controller][getTeams][Error] ", typeof error_5 === "object" ? JSON.stringify(error_5) : error_5);
+                error_6 = _a.sent();
+                console.error("[apiController][addConstellation][Error] ", typeof error_6 === "object" ? JSON.stringify(error_6) : error_6);
                 res.status(500).json({
-                    message: "There was an error when adding teams",
+                    message: "There was an error when adding Constellation",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -191,7 +215,7 @@ var addConstellation = function (req, res) { return __awaiter(void 0, void 0, vo
 exports.addConstellation = addConstellation;
 //starsconstellations
 var GetAllConstellationsForStar = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var Constellations, error_6;
+    var Constellations, error_7;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -204,10 +228,10 @@ var GetAllConstellationsForStar = function (req, res) { return __awaiter(void 0,
                 });
                 return [3 /*break*/, 3];
             case 2:
-                error_6 = _a.sent();
-                console.error("[teams.controller][getTeams][Error] ", typeof error_6 === "object" ? JSON.stringify(error_6) : error_6);
+                error_7 = _a.sent();
+                console.error("[apiController][GetAllConstellationsForStar][Error] ", typeof error_7 === "object" ? JSON.stringify(error_7) : error_7);
                 res.status(500).json({
-                    message: "There was an error when fetching teams",
+                    message: "There was an error when fetching GetAllConstellationsForStar",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -216,7 +240,7 @@ var GetAllConstellationsForStar = function (req, res) { return __awaiter(void 0,
 }); };
 exports.GetAllConstellationsForStar = GetAllConstellationsForStar;
 var addStarConstellation = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var result, error_7;
+    var result, error_8;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -229,10 +253,10 @@ var addStarConstellation = function (req, res) { return __awaiter(void 0, void 0
                 });
                 return [3 /*break*/, 3];
             case 2:
-                error_7 = _a.sent();
-                console.error("[teams.controller][getTeams][Error] ", typeof error_7 === "object" ? JSON.stringify(error_7) : error_7);
+                error_8 = _a.sent();
+                console.error("[apiController][addStarConstellation][Error] ", typeof error_8 === "object" ? JSON.stringify(error_8) : error_8);
                 res.status(500).json({
-                    message: "There was an error when adding teams",
+                    message: "There was an error when adding addStarConstellation",
                 });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

@@ -5,6 +5,7 @@ exports.SqlQueries = {
     GetAllStars: "\n    SELECT * FROM stars;\n    ",
     GetStar: "\n    SELECT * FROM stars WHERE id = ?;\n    ",
     AddStar: "\n    INSERT INTO stars (name, description, link)\n    VALUES (?, ?, ?);\n    ",
+    DeleteStar: "\n  DELETE FROM starsconstellations WHERE starID = ?;\n  DELETE FROM stars WHERE id = ?;\n  ",
     GetAllConstellations: "\n    SELECT * FROM constellations;\n    ",
     AddConstellation: "\n    INSERT INTO constellations (name, description, link)\n    VALUES (?, ?, ?);\n    ",
     AddStarsConstellations: "\n    INSERT INTO starsconstellations (starID, constellationID)\n    VALUES (?, ?);\n    ",
