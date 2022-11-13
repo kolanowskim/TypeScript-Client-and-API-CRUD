@@ -30,6 +30,15 @@ export const addStar = async (star: Star) => {
   return result.affectedRows > 0;
 };
 
+export const deleteStar = async (id: string) => {
+  const result = await execute<{ affectedRows: number }>(
+    SqlQueries.DeleteStar,
+    [id, id]
+  );
+
+  return result.affectedRows > 0;
+};
+
 //Constellations
 
 export const getConstellations = async () => {

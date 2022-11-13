@@ -12,6 +12,11 @@ export const SqlQueries = {
     VALUES (?, ?, ?);
     `,
 
+  DeleteStar: `
+  DELETE FROM starsconstellations WHERE starID = ?;
+  DELETE FROM stars WHERE id = ?;
+  `,
+
   GetAllConstellations: `
     SELECT * FROM constellations;
     `,

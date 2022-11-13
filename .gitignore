@@ -10,7 +10,7 @@ node_modules/
 
 # production
 build/
-API/dist/
+dist/
 
 # misc
 .DS_Store

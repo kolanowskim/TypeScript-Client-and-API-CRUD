@@ -1,7 +1,6 @@
 import { Request, RequestHandler, Response } from "express";
 import * as MySqlService from "../services/mysql.services";
 
-//!!!!!DOPOPRAWY
 //Stars
 
 export const getStars: RequestHandler = async (req: Request, res: Response) => {
@@ -12,11 +11,11 @@ export const getStars: RequestHandler = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error(
-      "[teams.controller][getTeams][Error] ",
+      "[apiController][getStars][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when fetching teams",
+      message: "There was an error when fetching Stars",
     });
   }
 };
@@ -29,11 +28,11 @@ export const addStar: RequestHandler = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error(
-      "[teams.controller][addTeam][Error] ",
+      "[apiController][addStar][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when adding new team",
+      message: "There was an error when adding new Star",
     });
   }
 };
@@ -46,11 +45,31 @@ export const getStar: RequestHandler = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error(
-      "[teams.controller][getTeams][Error] ",
+      "[apiController][getStar][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when fetching teams",
+      message: "There was an error when fetching Star",
+    });
+  }
+};
+
+export const deleteStar: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const result = await MySqlService.deleteStar(req.params.id);
+    res.status(200).json({
+      result,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][deleteStar][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when deleting star",
     });
   }
 };
@@ -68,11 +87,11 @@ export const getConstellations: RequestHandler = async (
     });
   } catch (error) {
     console.error(
-      "[teams.controller][getTeams][Error] ",
+      "[apiController][getConstellations][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when fetching teams",
+      message: "There was an error when fetching Constellations",
     });
   }
 };
@@ -88,11 +107,11 @@ export const addConstellation: RequestHandler = async (
     });
   } catch (error) {
     console.error(
-      "[teams.controller][getTeams][Error] ",
+      "[apiController][addConstellation][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when adding teams",
+      message: "There was an error when adding Constellation",
     });
   }
 };
@@ -112,11 +131,11 @@ export const GetAllConstellationsForStar: RequestHandler = async (
     });
   } catch (error) {
     console.error(
-      "[teams.controller][getTeams][Error] ",
+      "[apiController][GetAllConstellationsForStar][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when fetching teams",
+      message: "There was an error when fetching GetAllConstellationsForStar",
     });
   }
 };
@@ -132,11 +151,11 @@ export const addStarConstellation: RequestHandler = async (
     });
   } catch (error) {
     console.error(
-      "[teams.controller][getTeams][Error] ",
+      "[apiController][addStarConstellation][Error] ",
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when adding teams",
+      message: "There was an error when adding addStarConstellation",
     });
   }
 };

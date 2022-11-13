@@ -1,24 +1,17 @@
 import { Router } from "express";
-import {
-  getStars,
-  getStar,
-  addStar,
-  getConstellations,
-  addConstellation,
-  addStarConstellation,
-  GetAllConstellationsForStar,
-} from "../controllers/apiController";
+import * as apiController from "../controllers/apiController";
 
 const router = Router();
 
-router.route("/getStars").get(getStars);
-router.route("/addStar").post(addStar);
-router.route("/getStar/:id").get(getStar);
-router.route("/getConstellations").get(getConstellations);
-router.route("/addConstellation").post(addConstellation);
-router.route("/addStarConstellation").post(addStarConstellation);
+router.route("/getStars").get(apiController.getStars);
+router.route("/addStar").post(apiController.addStar);
+router.route("/deleteStar/:id").delete(apiController.deleteStar);
+router.route("/getStar/:id").get(apiController.getStar);
+router.route("/getConstellations").get(apiController.getConstellations);
+router.route("/addConstellation").post(apiController.addConstellation);
+router.route("/addStarConstellation").post(apiController.addStarConstellation);
 router
   .route("/GetAllConstellationsForStar/:id")
-  .get(GetAllConstellationsForStar);
+  .get(apiController.GetAllConstellationsForStar);
 
 export default router;

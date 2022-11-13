@@ -1,5 +1,5 @@
-import { createPool, Pool} from 'mysql';
-import { DATA_SOURCES } from '../configs/db.config';
+import { createPool, Pool } from "mysql";
+import { DATA_SOURCES } from "../configs/db.config";
 
 const dataSource = DATA_SOURCES.mySqlDataSource;
 
@@ -16,12 +16,13 @@ export const init = () => {
       user: dataSource.DB_USER,
       password: dataSource.DB_PASSWORD,
       database: dataSource.DB_DATABASE,
+      multipleStatements: true,
     });
 
-    console.debug('MySql Adapter Pool generated successfully');
+    console.debug("MySql Adapter Pool generated successfully");
   } catch (error) {
-    console.error('[mysql.connector][init][Error]: ', error);
-    throw new Error('failed to initialized pool');
+    console.error("[mysql.connector][init][Error]: ", error);
+    throw new Error("failed to initialized pool");
   }
 };
 
@@ -32,9 +33,15 @@ export const init = () => {
  * @param {string[] | Object} params - provide the parameterized values used
  * in the query
  */
-export const execute = <T>(query: string, params: string[] | Object): Promise<T> => {
+export const execute = <T>(
+  query: string,
+  params: string[] | Object
+): Promise<T> => {
   try {
-    if (!pool) throw new Error('Pool was not created. Ensure pool is created when running the app.');
+    if (!pool)
+      throw new Error(
+        "Pool was not created. Ensure pool is created when running the app."
+      );
 
     return new Promise<T>((resolve, reject) => {
       pool.query(query, params, (error, results) => {
@@ -42,9 +49,8 @@ export const execute = <T>(query: string, params: string[] | Object): Promise<T>
         else resolve(results);
       });
     });
-
   } catch (error) {
-    console.error('[mysql.connector][execute][Error]: ', error);
-    throw new Error('failed to execute MySQL query');
+    console.error("[mysql.connector][execute][Error]: ", error);
+    throw new Error("failed to execute MySQL query");
   }
-}
+};
