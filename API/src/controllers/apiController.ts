@@ -54,6 +54,26 @@ export const getStar: RequestHandler = async (req: Request, res: Response) => {
   }
 };
 
+export const updateStar: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const result = await MySqlService.updateStar(req.body);
+    res.status(200).json({
+      result,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][updateStar][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when updating star",
+    });
+  }
+};
+
 export const deleteStar: RequestHandler = async (
   req: Request,
   res: Response
