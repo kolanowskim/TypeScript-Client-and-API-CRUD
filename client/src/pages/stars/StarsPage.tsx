@@ -8,6 +8,7 @@ import addStarConstellation from "../../api/addStarConstellation";
 import getAllConstellationsForStar from "../../api/getAllConstellationsForStar";
 import getStar from "../../api/getStar";
 import { addNewStar as APIaddNewStar } from "../../api/addNewStar";
+import { deleteStar as APIdeleteStar } from "../../api/deleteStar";
 
 const StarsPage = () => {
   const [dropdownValue, setDropdownValue] = useState<Constellation>();
@@ -46,10 +47,14 @@ const StarsPage = () => {
     setStarDetailsView(true);
   };
 
-  const addNewStar = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const addNewStar = () => {
     console.log("add");
     APIaddNewStar(addNewStarName, addNewStarDescription, addNewStarLink);
+  };
+
+  const deleteStar = (id: number) => {
+    APIdeleteStar(id);
+    window.location.reload();
   };
 
   return (
@@ -60,7 +65,7 @@ const StarsPage = () => {
       {addNewStarView && (
         <StarDetailesContainer>
           <button onClick={() => setAddNewStarView(false)}>Wyjdź</button>
-          <FormAddStar onSubmit={(e) => addNewStar(e)}>
+          <FormAddStar onSubmit={addNewStar}>
             <label>
               Nazwa gwiazdy:
               <input
@@ -104,6 +109,7 @@ const StarsPage = () => {
             <button onClick={() => displayConstelations(star.id)}>
               Wyświetl konstelacje
             </button>
+            <button onClick={() => deleteStar(star.id)}>Usuń gwiazdę</button>
           </StarWrapper>
         ))}
       </StarsContainer>
