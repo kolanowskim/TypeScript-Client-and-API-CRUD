@@ -116,6 +116,26 @@ export const getConstellations: RequestHandler = async (
   }
 };
 
+export const getConstellation: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const constellation = await MySqlService.getConstellation(req.params.id);
+    res.status(200).json({
+      constellation,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][getConstellation][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when fetching Constellation",
+    });
+  }
+};
+
 export const addConstellation: RequestHandler = async (
   req: Request,
   res: Response
@@ -132,6 +152,46 @@ export const addConstellation: RequestHandler = async (
     );
     res.status(500).json({
       message: "There was an error when adding Constellation",
+    });
+  }
+};
+
+export const updateConstellation: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const result = await MySqlService.updateConstellation(req.body);
+    res.status(200).json({
+      result,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][updateConstellation][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when updating Constellation",
+    });
+  }
+};
+
+export const deleteConstellation: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const result = await MySqlService.deleteConstellation(req.params.id);
+    res.status(200).json({
+      result,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][deleteConstellation][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when deleting Constellation",
     });
   }
 };
@@ -155,7 +215,27 @@ export const GetAllConstellationsForStar: RequestHandler = async (
       typeof error === "object" ? JSON.stringify(error) : error
     );
     res.status(500).json({
-      message: "There was an error when fetching GetAllConstellationsForStar",
+      message: "There was an error when fetching AllConstellationsForStar",
+    });
+  }
+};
+
+export const GetAllStarsForConstellation: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const Stars = await MySqlService.GetAllStarsForConstellation(req.params.id);
+    res.status(200).json({
+      Stars,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][GetAllStarsForConstellation][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when fetching AllStarsForConstellation",
     });
   }
 };
@@ -176,6 +256,26 @@ export const addStarConstellation: RequestHandler = async (
     );
     res.status(500).json({
       message: "There was an error when adding addStarConstellation",
+    });
+  }
+};
+
+export const deleteStarConstellation: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const result = await MySqlService.deleteStarConstellation(req.params.id);
+    res.status(200).json({
+      result,
+    });
+  } catch (error) {
+    console.error(
+      "[apiController][deleteStarConstellation][Error] ",
+      typeof error === "object" ? JSON.stringify(error) : error
+    );
+    res.status(500).json({
+      message: "There was an error when deleting StarConstellation",
     });
   }
 };

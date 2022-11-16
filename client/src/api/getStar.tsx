@@ -1,4 +1,4 @@
-const getStar = async (id: number) => {
+export const getStar = async (id: string | number | undefined) => {
   try {
     const apiResponse = await fetch(`http://localhost:777/getStar/${id}`, {
       method: "GET",
@@ -6,10 +6,8 @@ const getStar = async (id: number) => {
         "Content-Type": "application/json",
       },
     });
-    return await apiResponse.json();
+    return apiResponse.json();
   } catch (e) {
     console.log(e);
   }
 };
-
-export default getStar;

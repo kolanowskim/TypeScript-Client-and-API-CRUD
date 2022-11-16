@@ -91,6 +91,9 @@ const Input = styled.div`
   align-items: center;
   justify-content: space-between;
   user-select: none;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
 `;
 
 const SelectedValue = styled.div``;
@@ -107,6 +110,7 @@ const Menu = styled.div`
   border-radius: 5px;
   overflow: auto;
   max-height: 150px;
+  background-color: white;
 `;
 
 const MenuItem = styled.div`

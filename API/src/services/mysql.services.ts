@@ -54,10 +54,37 @@ export const getConstellations = async () => {
   return execute<AllConstellations[]>(SqlQueries.GetAllConstellations, []);
 };
 
+export const getConstellation = async (id: string) => {
+  return execute<Constellation>(SqlQueries.GetConstellation, [id]);
+};
+
 export const addConstellation = async (constellation: Constellation) => {
   const result = await execute<{ affectedRows: number }>(
     SqlQueries.AddConstellation,
     [constellation.name, constellation.description, constellation.link]
+  );
+
+  return result.affectedRows > 0;
+};
+
+export const updateConstellation = async (constellation: Constellation) => {
+  const result = await execute<{ affectedRows: number }>(
+    SqlQueries.UpdateConstellation,
+    [
+      constellation.name,
+      constellation.description,
+      constellation.link,
+      constellation.id,
+    ]
+  );
+
+  return result.affectedRows > 0;
+};
+
+export const deleteConstellation = async (id: string) => {
+  const result = await execute<{ affectedRows: number }>(
+    SqlQueries.DeleteConstellation,
+    [id, id]
   );
 
   return result.affectedRows > 0;
@@ -69,12 +96,25 @@ export const getAllConstellationsForStar = async (id: string) => {
   return execute<[]>(SqlQueries.GetAllConstellationsForStar, [id]);
 };
 
+export const GetAllStarsForConstellation = async (id: string) => {
+  return execute<[]>(SqlQueries.GetAllStarsForConstellation, [id]);
+};
+
 export const addStarConstellation = async (
   starconstellation: StarConstellation
 ) => {
   const result = await execute<{ affectedRows: number }>(
     SqlQueries.AddStarsConstellations,
     [starconstellation.starID, starconstellation.constellationID]
+  );
+
+  return result.affectedRows > 0;
+};
+
+export const deleteStarConstellation = async (id: string) => {
+  const result = await execute<{ affectedRows: number }>(
+    SqlQueries.DeleteStarsConstellations,
+    [id]
   );
 
   return result.affectedRows > 0;

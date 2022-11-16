@@ -1,6 +1,6 @@
 import { StarConstellation } from "../types/types";
 
-const addStarConstellation = async (
+export const addStarConstellation = async (
   starID: number | undefined,
   constellationID: number | undefined
 ) => {
@@ -20,5 +20,3 @@ const addStarConstellation = async (
   const responseData = await apiResponse.json();
   console.log(responseData);
 };
-
-export default addStarConstellation;
