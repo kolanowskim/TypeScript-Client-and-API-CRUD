@@ -6,7 +6,7 @@ const useAllStars = () => {
 
   const fetchData = async () => {
     try {
-      const apiResponse = await fetch("http://localhost:777/getStars", {
+      const apiResponse = await fetch("http://localhost:777/stars/getStars", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

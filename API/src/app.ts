@@ -1,8 +1,9 @@
-import cors from 'cors';
-import express, { Request, Response } from 'express';
-import * as MySQLConnector from './utils/mysql.connector';
-import router from './routes/routes'
-
+import cors from "cors";
+import express, { Request, Response } from "express";
+import * as MySQLConnector from "./services/mysqlConnector";
+import starRouter from "./routes/starRoutes";
+import constellationRouter from "./routes/constellationRoutes";
+import starConRouter from "./routes/star-conRoutes";
 
 const app = express();
 const port = 777;
@@ -17,8 +18,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', router);
+app.use("/stars", starRouter);
+app.use("/constellations", constellationRouter);
+app.use("/starConstellations", starConRouter);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  });
+  console.log(`JavaScript app listening at http://localhost:${port}`);
+});

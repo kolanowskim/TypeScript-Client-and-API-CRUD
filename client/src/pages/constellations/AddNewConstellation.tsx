@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { apiAddNewConstellation } from "../../api/apiAddNewConstellation";
+import * as api from "../../api/apiConstellations";
 
 type Props = {
   setAddNewConstellationView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +14,7 @@ const AddNewConstellation: React.FC<Props> = ({
   const [constellationLink, setConstellationLink] = useState("");
 
   const addNewConstellation = () => {
-    apiAddNewConstellation(
+    api.addNewConstellation(
       constellationName,
       constellationDescription,
       constellationLink

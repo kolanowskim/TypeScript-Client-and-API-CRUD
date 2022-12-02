@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Constellation } from "../../types/types";
-import { apiUpdateConstellation } from "../../api/apiUpdateConstellation";
+import * as api from "../../api/apiConstellations";
 
 const UpdateConstellation = ({
   id,
@@ -15,7 +15,7 @@ const UpdateConstellation = ({
   const [constellationNameLink, setConstellationLink] = useState("");
 
   const updateConstellation = () => {
-    apiUpdateConstellation(
+    api.updateConstellation(
       id,
       constellationName,
       constellationNameDescription,

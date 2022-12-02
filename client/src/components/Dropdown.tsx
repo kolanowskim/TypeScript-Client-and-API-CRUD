@@ -10,7 +10,7 @@ import {
 interface DropdownProps {
   placeHolder: string;
   options: AllStars | AllConstellations | undefined;
-  handleValue?: (newType: Constellation) => void;
+  handleValue?: (newType: Constellation | Star) => void;
 }
 
 const Icon = () => {

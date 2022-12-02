@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Star } from "../../types/types";
-import { apiUpdateStar } from "../../api/apiUpdateStar";
+import { updateStar as apiUpdateStar } from "../../api/apiStars";
+/* import { apiUpdateStar } from "../../api/apiUpdateStar"; */
 
 const UpdateStar = ({ id, name, description, link }: Star) => {
   const [starName, setStarName] = useState("");

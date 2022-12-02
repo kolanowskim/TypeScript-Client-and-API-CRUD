@@ -37,6 +37,7 @@ export default StarsPage;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const RouteLink = styled(Link)`
@@ -51,6 +52,7 @@ const RouteLink = styled(Link)`
 const ButtonAddStar = styled.button`
   height: 50px;
   width: 200px;
+  cursor: pointer;
 `;
 
 const StarWrapper = styled.div`

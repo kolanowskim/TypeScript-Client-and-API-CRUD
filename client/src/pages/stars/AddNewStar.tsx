@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { addNewStar as APIaddNewStar } from "../../api/addNewStar";
+import * as api from "../../api/apiStars";
 
 type Props = {
   setAddNewStarView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +13,7 @@ const AddNewStar: React.FC<Props> = ({ setAddNewStarView }) => {
 
   const addNewStar = () => {
     console.log("add");
-    APIaddNewStar(StarName, StarDescription, StarLink);
+    api.addNewStar(StarName, StarDescription, StarLink);
   };
 
   return (

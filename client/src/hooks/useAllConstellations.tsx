@@ -8,7 +8,7 @@ const useAllConstellations = () => {
   const fetchData = async () => {
     try {
       const apiResponse = await fetch(
-        "http://localhost:777/getConstellations",
+        "http://localhost:777/constellations/getConstellations",
         {
           method: "GET",
           headers: {

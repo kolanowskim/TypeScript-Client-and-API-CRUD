@@ -39,6 +39,7 @@ export default ConstellationsPage;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const RouteLink = styled(Link)`
@@ -53,6 +54,7 @@ const RouteLink = styled(Link)`
 const ButtonAddConstellation = styled.button`
   height: 50px;
   width: 200px;
+  cursor: pointer;
 `;
 const ConstellationsContainer = styled.div`
   display: flex;

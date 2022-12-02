@@ -7,19 +7,16 @@ import {
   useNavigate,
 } from "react-router-dom";
 import useAllConstellations from "../../hooks/useAllConstellations";
-import { getStar } from "../../api/getStar";
+import * as apiStar from "../../api/apiStars";
+import * as apiStarCon from "../../api/apiStarCon";
 import { Star, AllConstellations, Constellation } from "../../types/types";
-import getAllConstellationsForStar from "../../api/getAllConstellationsForStar";
-import { addStarConstellation } from "../../api/addStarConstellation";
 import Dropdown from "../../components/Dropdown";
 import UpdateStar from "./UpdateStar";
-import { deleteStar as APIdeleteStar } from "../../api/deleteStar";
-import { apiDeleteStarConstellation } from "../../api/apiDeleteStarConstellation";
 
 export const starDetailsLoader = async ({
   params,
 }: LoaderFunctionArgs): Promise<Star> => {
-  const data = await getStar(params.id);
+  const data = await apiStar.getStar(params.id);
   return data.star[0];
 };
 
@@ -33,24 +30,24 @@ const StarDetailsPage = () => {
   const [dropDownValue, setDropdownValue] = useState<Constellation>();
 
   const getConstellations = () => {
-    getAllConstellationsForStar(starData.id).then(function (data) {
+    apiStarCon.getAllConstellationsForStar(starData.id).then(function (data) {
       setStarConstellations(data.Constellations);
     });
   };
 
   const addConstellation = () => {
-    addStarConstellation(starData?.id, dropDownValue?.id);
+    apiStarCon.addStarConstellation(starData?.id, dropDownValue?.id);
     window.location.reload();
   };
 
   const deleteStarConstellation = (id: number) => {
-    apiDeleteStarConstellation(id);
+    apiStarCon.deleteStarConstellation(id);
     window.location.reload();
   };
 
   const deleteStar = () => {
-    APIdeleteStar(starData.id);
-    navigate("/");
+    apiStar.deleteStar(starData.id);
+    navigate("/stars");
   };
 
   useEffect(() => {

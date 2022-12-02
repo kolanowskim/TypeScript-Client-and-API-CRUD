@@ -7,19 +7,16 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import { AllStars, Star, Constellation } from "../../types/types";
-import { apiGetConstellation } from "../../api/apiGetConstellation";
+import * as apiCon from "../../api/apiConstellations";
+import * as apiStarCon from "../../api/apiStarCon";
 import useAllStars from "../../hooks/useAllStars";
-import { apiGetAllStarsForConstellation } from "../../api/apiGetAllStarsForConstellation";
-import { addStarConstellation } from "../../api/addStarConstellation";
-import { apiDeleteStarConstellation } from "../../api/apiDeleteStarConstellation";
-import { apiDeleteConstellation } from "../../api/apiDeleteConstellation";
 import Dropdown from "../../components/Dropdown";
 import UpdateConstellation from "./UpdateConstellation";
 
 export const constellationDetailsLoader = async ({
   params,
 }: LoaderFunctionArgs): Promise<Constellation> => {
-  const data = await apiGetConstellation(params.id);
+  const data = await apiCon.getConstellation(params.id);
   return data.constellation[0];
 };
 
@@ -32,23 +29,25 @@ const ConDetailsPage = () => {
   const [dropDownValue, setDropdownValue] = useState<Star>();
 
   const getStars = () => {
-    apiGetAllStarsForConstellation(constellationData.id).then(function (data) {
-      setConstellationStars(data.Stars);
-    });
+    apiStarCon
+      .getAllStarsForConstellation(constellationData.id)
+      .then(function (data) {
+        setConstellationStars(data.Stars);
+      });
   };
 
   const addStar = () => {
-    addStarConstellation(dropDownValue?.id, constellationData?.id);
+    apiStarCon.addStarConstellation(dropDownValue?.id, constellationData?.id);
     window.location.reload();
   };
 
   const deleteStarConstellation = (id: number) => {
-    apiDeleteStarConstellation(id);
+    apiStarCon.deleteStarConstellation(id);
     window.location.reload();
   };
 
   const deleteStar = () => {
-    apiDeleteConstellation(constellationData.id);
+    apiCon.deleteConstellation(constellationData.id);
     navigate("/constellations");
   };
 
